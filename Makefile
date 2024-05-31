@@ -6,7 +6,8 @@ CFLAGS := -std=c11 -pedantic \
 		  -Wall -Werror \
 		  -ggdb
 
-LDFLAGS := -lm
+LDFLAGS := -L./lib/raylib-5.0_linux_amd64/lib \
+		   -l:libraylib.a -lm
 
 BIN_DIR := bin
 SRC_DIR := src
@@ -29,7 +30,7 @@ make_bin_dir:
 
 # Build the template project.
 template: make_bin_dir ${OBJ_FILES} ${BIN_DIR}/obj/template.o
-	${LD} ${LDFLAGS} -o ${BIN_DIR}/template ${OBJ_FILES} ${BIN_DIR}/obj/template.o
+	${LD} -o ${BIN_DIR}/template ${OBJ_FILES} ${BIN_DIR}/obj/template.o ${LDFLAGS}
 
 # Compile the obj files.
 $(BIN_DIR)/obj/%.o: ${SRC_DIR}/%.c | make_bin_dir
