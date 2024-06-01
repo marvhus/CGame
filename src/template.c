@@ -1,5 +1,6 @@
 #include "Engine/engine.h"
 #include "Engine/event.h"
+#include "Engine/logging.h"
 
 void update(float delta);
 void render(float delta);
@@ -17,12 +18,12 @@ int main(int argc, char **argv)
         .render_callback = render,
         .handle_event_callback = handle_event,
     };
+    eng_log(LL_INFO, "Hello, World!\n");
     eng_start(engine);
 }
 
 void update(float delta)
 {
-
 }
 
 void render(float delta)

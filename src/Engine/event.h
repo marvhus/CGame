@@ -2,7 +2,7 @@
 #define __H_EVENT__
 
 typedef enum {
-    EVN_NONE,
+    EK_NONE,
 } Event_Kind;
 
 typedef struct {
