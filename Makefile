@@ -1,10 +1,7 @@
 CC := gcc
 LD := gcc
 
-CFLAGS := -std=c11 -pedantic \
-		  -I./src \
-		  -Wall -Werror \
-		  -ggdb
+CFLAGS := $(shell cat compile_flags.txt)
 
 LDFLAGS := -L./lib/raylib-5.0_linux_amd64/lib \
 		   -l:libraylib.a -lm

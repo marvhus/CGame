@@ -1,10 +1,10 @@
-#include "engine.h"
-#include "eng_internal.h"
+#include <Engine/engine.h>
+#include <Raylib/raylib.h>
 
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "Thirdparty/raylib.h"
+#include "eng_internal.h"
 
 bool is_running;
 Color background_color;
@@ -40,7 +40,7 @@ void eng_update(Engine engine)
     if (WindowShouldClose() == true) is_running = false;
 }
 
-void eng_stop()
+void eng_stop(void)
 {
     is_running = false;
 }

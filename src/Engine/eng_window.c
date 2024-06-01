@@ -1,9 +1,9 @@
 #ifndef __H_ENG_WINDOW__
 #define __H_ENG_WINDOW__
 
-#include "eng_internal.h"
+#include <Raylib/raylib.h>
 
-#include "Thirdparty/raylib.h"
+#include "eng_internal.h"
 
 void eng_window_open(const char *title, int width, int height)
 {
@@ -11,7 +11,7 @@ void eng_window_open(const char *title, int width, int height)
     SetTargetFPS(60);
 }
 
-void eng_window_close()
+void eng_window_close(void)
 {
     CloseWindow();
 }

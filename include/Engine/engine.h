@@ -1,7 +1,8 @@
 #ifndef __H_ENGINE__
 #define __H_ENGINE__
 
-#include "event.h"
+#include <Engine/event.h>
+
 #include <stdint.h>
 
 typedef struct {
@@ -15,6 +16,6 @@ typedef struct {
 } Engine;
 
 void eng_start(Engine engine);
-void eng_stop();
+void eng_stop(void);
 
 #endif

@@ -1,0 +1,6 @@
+-std=c11
+-pedantic
+-I./include
+-Wall
+-Werror
+-ggdb
