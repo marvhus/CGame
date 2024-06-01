@@ -22,7 +22,7 @@ clean:
 
 
 # Build the template project.
-TEMPLATE_SRC_FILES := $(wildcard Template/*.c)
+TEMPLATE_SRC_FILES := $(shell find ./Template -name "*.c")
 TEMPLATE_OBJ_FILES := $(patsubst %.c, ${OBJ_DIR}/%.o, ${TEMPLATE_SRC_FILES})
 template: bin_dir engine ${TEMPLATE_OBJ_FILES}
 	${LD} -o ${BIN_DIR}/template ${ENGINE_OBJ_FILES} ${TEMPLATE_OBJ_FILES} ${LDFLAGS}
@@ -34,7 +34,7 @@ bin_dir:
 	mkdir -p ${BIN_DIR}
 
 # Compile the engine obj files
-ENGINE_SRC_FILES := $(wildcard Engine/*/*.c)
+ENGINE_SRC_FILES := $(shell find ./Engine -name "*.c")
 ENGINE_OBJ_FILES := $(patsubst %.c, ${OBJ_DIR}/%.o, ${ENGINE_SRC_FILES})
 engine: bin_dir ${ENGINE_OBJ_FILES}
 

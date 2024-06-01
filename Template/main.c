@@ -33,5 +33,4 @@ void render(float delta)
 
 void handle_event(Event event)
 {
-
 }

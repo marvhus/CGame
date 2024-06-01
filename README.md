@@ -12,13 +12,19 @@ To remove all the binaries, do `make clean`.
 
 
 ## Getting started
-To create your own game here, go into the `src` directory. Now copy the `template.c` file and call it something like `my_game.c`.
+To create your own game here, copy the `Template` directory, and rename it to for example `MyGame`.
+Now go inside the `Makefile` file, and add in a new rule like this:
+```make
+# Build MyGame.
+MYGAME_SRC_FILES := $(shell find ./MyGame -name "*.c")
+MYGAME_OBJ_FILES := $(patsubst %.c, ${OBJ_DIR}/%.o, ${MYGAME_SRC_FILES})
+mygame: bin_dir engine ${TEMPLATE_OBJ_FILES}
+	${LD} -o ${BIN_DIR}/template ${ENGINE_OBJ_FILES} ${MYGAME_OBJ_FILES} ${LDFLAGS}
+```
+Don't forget to replace the example name of the game (here it's `MyGame`) with your actual game name.  
+Also, add the rule (in this case `mygame`) to the `all` and `.PHONY` rules.
 
-Now you have created an entry point for your game, to be able to build it, go back into the root of the repository, and open up
-`Makefile`. In there you can copy the rule `template`, and call it something like `my_game`. Make sure to go through the rule,
-and replace any mention to things like `template` and `template.o` is replaced with `my_game` and `my_game.o`.
-
-Also, don't forget to add your new rule to `all` and `.PHONY`.
+Now you can work on your game inside the folder you created.
 
 
 ## Games
