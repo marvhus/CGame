@@ -34,7 +34,7 @@ bin_dir:
 	mkdir -p ${BIN_DIR}
 
 # Compile the engine obj files
-ENGINE_SRC_FILES := $(wildcard engine_src/*/*.c)
+ENGINE_SRC_FILES := $(wildcard Engine/*/*.c)
 ENGINE_OBJ_FILES := $(patsubst %.c, ${OBJ_DIR}/%.o, ${ENGINE_SRC_FILES})
 engine: bin_dir ${ENGINE_OBJ_FILES}
 
@@ -43,6 +43,5 @@ engine_lib: bin_dir ${ENGINE_OBJ_FILES}
 
 # Compile obj files.
 ${OBJ_DIR}/%.o: %.c | bin_dir
-	@echo "Compiling engine objs..."
-	mkdir -p $(dir $@)
+	@mkdir -p $(dir $@)
 	${CC} ${CFLAGS} -c -o $@ $<

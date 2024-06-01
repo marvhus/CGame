@@ -1,6 +1,6 @@
-#include <Engine/engine.h>
-#include <Engine/event.h>
-#include <Engine/logging.h>
+#include <Engine/Core/engine.h>
+#include <Engine/Core/event.h>
+#include <Engine/Logger/logger.h>
 
 void update(float delta);
 void render(float delta);

@@ -1,5 +1,5 @@
-#include <Engine/logging.h>
-#include "eng_logging_internal.h"
+#include <Engine/Logger/logger.h>
+#include "eng_logger_internal.h"
 
 #include <stdio.h>
 

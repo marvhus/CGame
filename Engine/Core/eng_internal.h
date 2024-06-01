@@ -1,7 +1,7 @@
 #ifndef __H_ENG_INTERNAL__
 #define __H_ENG_INTERNAL__
 
-#include <Engine/engine.h>
+#include <Engine/Core/engine.h>
 #include <Raylib/raylib.h>
 
 #include <stdbool.h>

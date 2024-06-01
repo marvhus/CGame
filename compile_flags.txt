@@ -3,5 +3,5 @@
 -Wall
 -Werror
 -ggdb
--I./include
+-I./
 -I./thirdparty
