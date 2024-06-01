@@ -3,16 +3,13 @@ LD := gcc
 
 CFLAGS := $(shell cat compile_flags.txt)
 
-LDFLAGS := -L./lib/raylib-5.0_linux_amd64/lib \
+LDFLAGS := -L./thirdparty/Raylib \
 		   -l:libraylib.a -lm
 
 BIN_DIR := bin
-SRC_DIR := src
+OBJ_DIR := ${BIN_DIR}/obj
 
-SRC_FILES := $(wildcard ${SRC_DIR}/*/*.c)
-OBJ_FILES := $(patsubst ${SRC_DIR}/%.c, ${BIN_DIR}/obj/%.o, ${SRC_FILES})
-
-.PHONY: all clean make_bin_dir template
+.PHONY: all clean bin_dir engine engine_lib template
 
 # Compile everything.
 all: template
@@ -21,15 +18,31 @@ all: template
 clean:
 	rm -rf ${BIN_DIR}
 
-# Create the bin directory.
-make_bin_dir:
-	mkdir -p ${BIN_DIR}
+
+
 
 # Build the template project.
-template: make_bin_dir ${OBJ_FILES} ${BIN_DIR}/obj/template.o
-	${LD} -o ${BIN_DIR}/template ${OBJ_FILES} ${BIN_DIR}/obj/template.o ${LDFLAGS}
+TEMPLATE_SRC_FILES := $(wildcard Template/*.c)
+TEMPLATE_OBJ_FILES := $(patsubst %.c, ${OBJ_DIR}/%.o, ${TEMPLATE_SRC_FILES})
+template: bin_dir engine ${TEMPLATE_OBJ_FILES}
+	${LD} -o ${BIN_DIR}/template ${ENGINE_OBJ_FILES} ${TEMPLATE_OBJ_FILES} ${LDFLAGS}
 
-# Compile the obj files.
-$(BIN_DIR)/obj/%.o: ${SRC_DIR}/%.c | make_bin_dir
+
+
+# Create the bin directory.
+bin_dir:
+	mkdir -p ${BIN_DIR}
+
+# Compile the engine obj files
+ENGINE_SRC_FILES := $(wildcard engine_src/*/*.c)
+ENGINE_OBJ_FILES := $(patsubst %.c, ${OBJ_DIR}/%.o, ${ENGINE_SRC_FILES})
+engine: bin_dir ${ENGINE_OBJ_FILES}
+
+engine_lib: bin_dir ${ENGINE_OBJ_FILES}
+	ar rcs ${BIN_DIR}/libcgame.a ${ENGINE_OBJ_FILES}
+
+# Compile obj files.
+${OBJ_DIR}/%.o: %.c | bin_dir
+	@echo "Compiling engine objs..."
 	mkdir -p $(dir $@)
 	${CC} ${CFLAGS} -c -o $@ $<
