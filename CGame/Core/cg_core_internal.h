@@ -5,6 +5,7 @@
 #include <Raylib/raylib.h>
 
 #include <stdbool.h>
+#include <stdlib.h>
 
 extern bool is_running;
 extern Color background_color;
@@ -15,5 +16,16 @@ void cg_core_window_open(const char *title, int width, int height);
 void cg_core_window_close(void);
 // Will be run on each frame and will handle calling the user callbacks, etc.
 void cg_core_update(CG_Engine engine);
+
+// Data structure for dynamic list of scenes.
+typedef struct {
+    CG_Scene *data;
+    size_t count;
+    size_t capacity;
+} CG_Scenes;
+
+extern CG_Scenes cg_core_scenes;
+extern size_t cg_core_scene_index;
+extern bool cg_core_scene_just_switched;
 
 #endif

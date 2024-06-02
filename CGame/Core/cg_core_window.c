@@ -3,7 +3,7 @@
 
 #include <Raylib/raylib.h>
 
-#include "eng_internal.h"
+#include "cg_core_internal.h"
 
 void cg_core_window_open(const char *title, int width, int height)
 {
