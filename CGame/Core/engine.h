@@ -2,7 +2,6 @@
 #define __H_ENGINE__
 
 #include "CGame/Core/color.h"
-#include <CGame/Core/event.h>
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -15,7 +14,6 @@ typedef struct {
     void (*deinit)(void *);
     void (*update)(void *, float);
     void (*render)(void *, float);
-    void (*event )(void *, CG_Event);
 } CG_Scene;
 
 // The engine configuration set by the game.
@@ -33,7 +31,9 @@ void cg_core_stop(void);
 // Add a given scene to the internal array of scenes.
 void cg_core_scene_add(CG_Scene scene);
 // Reserve a given amount of space for scenes so you won't have unecesary allocations.
-void cg_core_scene_reserve(size_t count);
+void cg_core_scenes_reserve(size_t count);
+// Remove all the scenes.
+void cg_core_scenes_clean(void);
 // Set the current scene. Returns 0 if successful.
 int cg_core_scene_set(size_t scene_index);
 

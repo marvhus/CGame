@@ -1,8 +1,6 @@
 #include "CGame/Core/cg_core_internal.h"
-#include "CGame/Logger/logger.h"
 #include <CGame/Core/engine.h>
 
-#include <stdio.h>
 #include <stdlib.h>
 
 #include <CGame/Array/dynamic.h>
@@ -14,19 +12,18 @@ bool cg_core_scene_just_switched = false;
 
 void cg_core_scene_add(CG_Scene scene)
 {
-    cg_log_log(CG_LOG_INFO, "Appending to scenes");
-    CG_DA_APPEND(cg_core_scenes, scene);
+    CG_DA_APPEND(&cg_core_scenes, scene);
 }
-
-void cg_core_scene_reserve(size_t count)
+void cg_core_scenes_reserve(size_t count)
 {
-    cg_log_log(CG_LOG_INFO, "Reserving space for scenes");
-    CG_DA_RESIZE(cg_core_scenes, count);
+    CG_DA_RESIZE(&cg_core_scenes, count);
 }
-
+void cg_core_scenes_clean(void)
+{
+    CG_DA_CLEAN(&cg_core_scenes);
+}
 int cg_core_scene_set(size_t scene_index)
 {
-    cg_log_log(CG_LOG_INFO, "Setting current scene");
     // Check if scene index is valid.
     if (scene_index < 0 && scene_index >= cg_core_scenes.capacity)
         return 1;

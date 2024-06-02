@@ -38,7 +38,7 @@ void cg_core_run(void (*init_callback)(CG_Engine *))
 void cg_core_update(CG_Engine engine)
 {
     // @TODO: implement some actual delta time stuff.
-    float delta = 0.0f;
+    float delta = GetFrameTime();
 
     CG_Scene current = cg_core_scenes.data[cg_core_scene_index];
 
