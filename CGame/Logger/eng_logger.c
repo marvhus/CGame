@@ -1,26 +1,26 @@
-#include <Engine/Logger/logger.h>
+#include <CGame/Logger/logger.h>
 #include "eng_logger_internal.h"
 
 #include <stdio.h>
 
-Log_Level minimum_log_level = LL_INFO;
+CG_Log_Level minimum_log_level = CG_LOG_INFO;
 
-void eng_log(Log_Level log_level, const char *msg)
+void cg_log_log(CG_Log_Level log_level, const char *msg)
 {
     if (log_level < minimum_log_level) return;
 
     switch (log_level)
     {
-        case LL_DEBUG: {
+        case CG_LOG_DEBUG: {
             printf("[DEBUG] %s\n", msg);
         } break;
-        case LL_INFO: {
+        case CG_LOG_INFO: {
             printf("[INFO] %s\n", msg);
         } break;
-        case LL_WARNING: {
+        case CG_LOG_WARNING: {
             printf("[WARN] %s\n", msg);
         } break;
-        case LL_ERROR: {
+        case CG_LOG_ERROR: {
             printf("[ERROR] %s\n", msg);
         } break;
         default: {
@@ -29,7 +29,7 @@ void eng_log(Log_Level log_level, const char *msg)
     }
 }
 
-void eng_log_minimum(Log_Level log_level)
+void cg_log_minimum(CG_Log_Level log_level)
 {
     minimum_log_level = log_level;
 }

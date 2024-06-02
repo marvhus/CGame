@@ -34,7 +34,7 @@ bin_dir:
 	mkdir -p ${BIN_DIR}
 
 # Compile the engine obj files
-ENGINE_SRC_FILES := $(shell find ./Engine -name "*.c")
+ENGINE_SRC_FILES := $(shell find ./CGame -name "*.c")
 ENGINE_OBJ_FILES := $(patsubst %.c, ${OBJ_DIR}/%.o, ${ENGINE_SRC_FILES})
 engine: bin_dir ${ENGINE_OBJ_FILES}
 

@@ -1,14 +1,14 @@
-#include <Engine/Core/engine.h>
-#include <Engine/Core/event.h>
-#include <Engine/Logger/logger.h>
+#include <CGame/Core/engine.h>
+#include <CGame/Core/event.h>
+#include <CGame/Logger/logger.h>
 
 void update(float delta);
 void render(float delta);
-void handle_event(Event event);
+void handle_event(CG_Event event);
 
 int main(int argc, char **argv)
 {
-    Engine engine = {
+    CG_Engine engine = {
         .window_title = "Template",
         .window_width = 1280,
         .window_height = 720,
@@ -18,8 +18,9 @@ int main(int argc, char **argv)
         .render_callback = render,
         .handle_event_callback = handle_event,
     };
-    eng_log(LL_INFO, "Hello, World!\n");
-    eng_start(engine);
+    cg_log_log(CG_LOG_INFO, "Hello, World!");
+    cg_log_log(CG_LOG_DEBUG, "Starting engine.");
+    cg_core_run(engine);
 }
 
 void update(float delta)
@@ -31,6 +32,6 @@ void render(float delta)
 
 }
 
-void handle_event(Event event)
+void handle_event(CG_Event event)
 {
 }
