@@ -12,6 +12,7 @@ typedef struct {
     void *state;
 
     void (*init  )(void *);
+    void (*deinit)(void *);
     void (*update)(void *, float);
     void (*render)(void *, float);
     void (*event )(void *, CG_Event);

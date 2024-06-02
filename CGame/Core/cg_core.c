@@ -17,12 +17,22 @@ void cg_core_run(void (*init_callback)(CG_Engine *))
     CG_Engine engine = {0};
     init_callback(&engine);
 
+    {
+        CG_Scene current = cg_core_scenes.data[cg_core_scene_index];
+        current.init(current.state);
+    }
+
     cg_core_window_open(engine.window_title, engine.window_width, engine.window_height);
 
     while (is_running)
         cg_core_update(engine);
 
     cg_core_window_close();
+
+    {
+        CG_Scene current = cg_core_scenes.data[cg_core_scene_index];
+        current.deinit(current.state);
+    }
 }
 
 void cg_core_update(CG_Engine engine)
@@ -33,8 +43,12 @@ void cg_core_update(CG_Engine engine)
     CG_Scene current = cg_core_scenes.data[cg_core_scene_index];
 
     if (cg_core_scene_just_switched) {
-        cg_core_scene_just_switched = false;
+        CG_Scene prev = cg_core_scenes.data[cg_core_scene_index_prev];
+        prev.deinit(prev.state);
         current.init(current.state);
+
+        cg_core_scene_just_switched = false;
+        cg_core_scene_index_prev = cg_core_scene_index;
     }
 
     current.update(current.state, delta);

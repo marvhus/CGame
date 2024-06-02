@@ -9,8 +9,8 @@
 
 CG_Scenes cg_core_scenes = {0};
 size_t cg_core_scene_index = 0;
-// This should start as true since the init function for the scene should run immediatly.
-bool cg_core_scene_just_switched = true;
+size_t cg_core_scene_index_prev = 0;
+bool cg_core_scene_just_switched = false;
 
 void cg_core_scene_add(CG_Scene scene)
 {

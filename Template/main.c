@@ -7,6 +7,7 @@ typedef struct {
 } Scene_State;
 
 void scene_init(void *state);
+void scene_deinit(void *state);
 void scene_update(void *state, float delta);
 void scene_render(void *state, float delta);
 void scene_event(void *state, CG_Event event);
@@ -25,6 +26,7 @@ void game_init(CG_Engine *engine)
     cg_core_scene_add((CG_Scene){
         .state  = state,
         .init   = scene_init,
+        .deinit = scene_deinit,
         .update = scene_update,
         .render = scene_render,
         .event  = scene_event,
@@ -42,6 +44,14 @@ void scene_init(void *_state)
     (void)scene;
 
     cg_log_log(CG_LOG_INFO, "Initializing scene.");
+}
+
+void scene_deinit(void *_state)
+{
+    CG_Scene *scene = (CG_Scene *)_state;
+    (void)scene;
+
+    cg_log_log(CG_LOG_INFO, "Deinitializing scene.");
 }
 
 void scene_update(void *_state, float delta)

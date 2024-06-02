@@ -26,6 +26,7 @@ typedef struct {
 
 extern CG_Scenes cg_core_scenes;
 extern size_t cg_core_scene_index;
+extern size_t cg_core_scene_index_prev;
 extern bool cg_core_scene_just_switched;
 
 #endif
