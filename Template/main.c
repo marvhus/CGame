@@ -17,6 +17,7 @@ void scene_render(void *state, float delta);
 void game_init(CG_Engine *engine)
 {
     cg_log_log(CG_LOG_INFO, "Initializing game.");
+    cg_log_log(CG_LOG_INFO, "Initializing game.");
 
     engine->window_title = "Template\0";
     engine->window_width = 1280;
