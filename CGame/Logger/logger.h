@@ -1,7 +1,7 @@
 #ifndef __H_LOGGING__
 #define __H_LOGGING__
 
-// The availiable log levels. (the ones marked with Don't print are there to help you set a minimum level, and not to actually print something.)
+// NOTE(mvh): The availiable log levels. (the ones marked with Don't print are there to help you set a minimum level, and not to actually print something.)
 typedef enum {
     CG_LOG_ALL = 0, // Don't print.
     CG_LOG_DEBUG,
